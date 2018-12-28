@@ -76,7 +76,7 @@ for k=1:N
   w{end+1} = x_plus;
   lbx{end+1} = lb_x;
   ubx{end+1} = ub_x;
-  f = f + x'*Q*x;
+  f = f + x_plus'*Q*x_plus;
 
   % Dynamic constraints
   g{end+1} = A*x+B*u-x_plus;
@@ -87,6 +87,9 @@ for k=1:N
   g{end+1} = H_x*x+H_u*u;
   lbg{end+1} = lb_h;
   ubg{end+1} = ub_h;
+  
+  % Pass to next k
+  x = x_plus;
 end
 
 % Make tall flattened vectors
